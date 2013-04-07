@@ -23,14 +23,21 @@ app.configure(function() {
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
+var html_dir = './public/html/';
+
 app.configure('development', function() {
     app.use(express.errorHandler());
 });
+
 
 app.get('/', function(req, res) {
     res.render('index', {
         title: 'Home'
     });
+});
+
+app.get('/hello', function(req, res) {
+    res.sendfile(html_dir + 'about.html');
 });
 
 app.get('/about', function(req, res) {
@@ -45,7 +52,6 @@ app.get('/contact', function(req, res) {
     });
 });
 
-http.createServer(app)
-    .listen(app.get('port'), function() {
+http.createServer(app).listen(app.get('port'), function() {
     console.log("Express server listening on port " + app.get('port'));
 });
