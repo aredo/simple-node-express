@@ -29,6 +29,8 @@ app.configure(function() {
         res.render('404.jade', {title: '404: File Not Found'});
     });
 
+    app.use(express.favicon(__dirname + 'public/favicon.ico'));
+
     // Handle 500
     app.use(function(error, req, res, next) {
         res.status(500);
